@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Beer Me!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+  <nav class="navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <h1 class="text-center">Beer Me!<br>
+    <small>Quickly get a list of bars near your current location.</small></h1>
+    </div>
+  </nav>
+  <div class="container">
+    <div id="loader">
+      <img src="images/loader.gif">
+    </div>
+    <div id="barList" class="list-group" data-bind="foreach: bars">
+      <div class="list-group-item">
+        <div class="row">
+          <div class="col-xs-12">
+            <h3 data-bind="text: name"></h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="rating" data-bind="css: ratingClass"></div>
+            <span class="num-reviews" data-bind="text: review_count + ' Reviews'"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 categories">
+            <!-- ko foreach: displayCategories -->
+            <span class="label label-default" data-bind="text: tag"></span>
+            <!-- /ko -->
+            <!-- ko if: !$parent.is_closed -->
+            <span class="label label-success">Open</span>
+            <!-- /ko -->
+          </div>
+        </div>
+        <div id="buttons" class="row">
+          <div class="col-xs-12">
+            <a data-bind="attr: {href: directionsURL}" class="btn btn-default directions" role="button" target="_blank"><span class="glyphicon glyphicon-map-marker"></span> Directions</a>
+            <a data-bind="attr: {href: 'http://google.com/images?q=' + name + ' ' + location.city}" class="btn btn-default directions" role="button" target="_blank"><span class="glyphicon glyphicon-picture"></span> Photos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <footer>
+        <div class="col-xs-6">
+          <p id="copyright" class="text-left">Created by <a href="http://www.travislibby.com" target="_blank">Travis Libby</a></p>
+        </div>
+        <div class="col-xs-6 push-right">
+          <p class="text-right">Powered by <img src="images/yelp_logo_50x25.png"></p>
+        </div>
+      </footer>  
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
